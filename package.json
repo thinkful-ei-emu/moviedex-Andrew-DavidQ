@@ -1,0 +1,28 @@
+{
+  "name": "moviedex-andrew-davidq",
+  "version": "1.0.0",
+  "description": "dex for movies",
+  "main": "server.js",
+  "scripts": {
+    "test": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thinkful-ei-emu/moviedex-Andrew-DavidQ.git"
+  },
+  "author": "Andrew, DavidQ",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thinkful-ei-emu/moviedex-Andrew-DavidQ/issues"
+  },
+  "homepage": "https://github.com/thinkful-ei-emu/moviedex-Andrew-DavidQ#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^3.18.0",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
