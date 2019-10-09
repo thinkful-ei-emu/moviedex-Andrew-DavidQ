@@ -5,27 +5,38 @@ const express = require('express');
 const helmet = require('helmet');
 const morgan = require('morgan');
 
+const movies = require('./movies.json');
+
 const app = express();
+
 
 const API_KEY = process.env.API_KEY;
 const PORT = process.env.PORT || '8080';
-
-const movies = require('./movies.json');
 
 app.use(cors());
 app.use(helmet());
 app.use(morgan('dev'));
 
-app.get('/movies', (req, res) => {
-  console.log(req.query);
+/**
+ * validate auth token
+ */
+app.use((req, res, next) => {
+  const authToken = req.get('Authorization');
+  if (!authToken || authToken.split(' ')[1] !== API_KEY) {
+    return res.status(401).json({ error: 'Unauthorized request' });
+  }
+  next();
+});
 
+/**
+ * GET /movies
+ */
+app.get('/movies', (req, res) => {
   const genre = req.query.genre || null;
   const country = req.query.country || null;
   const avg_vote = req.query.avg_vote || null;
 
   let results = [...movies];
-
-  console.log(genre, country, avg_vote);
 
   if (genre) results = movies.filter(movie => movie.genre.includes(genre));
   if (country) results = movies.filter(movie => movie.country.includes(country));
