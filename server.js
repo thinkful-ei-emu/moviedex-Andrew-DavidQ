@@ -36,11 +36,11 @@ app.get('/movies', (req, res) => {
   const country = req.query.country || null;
   const avg_vote = req.query.avg_vote || null;
 
-  let results = [...movies];
+  let results = movies;
 
-  if (genre) results = movies.filter(movie => movie.genre.includes(genre));
-  if (country) results = movies.filter(movie => movie.country.includes(country));
-  if (avg_vote) results = movies.filter(movie => movie.avg_vote >= avg_vote);
+  if (genre) results = results.filter(result => result.genre.includes(genre));
+  if (country) results = results.filter(result => result.country.includes(country));
+  if (avg_vote) results = results.filter(result => result.avg_vote >= avg_vote);
 
   res.status(200).json(
     results
